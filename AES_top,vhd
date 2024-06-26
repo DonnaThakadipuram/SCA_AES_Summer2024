@@ -1,0 +1,55 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.std_logic_unsigned.all;
+
+
+entity AES_top is
+  port(
+    clock, reset, begin_AES: in std_logic;
+    data_in, key: std_logic_vector(127 downto 0)
+  );
+end AES_top;
+
+
+architecture AES_arch of AES_top is
+  --signal
+
+  component add_round_key is
+  port(
+    clock, reset, start: in std_logic;
+    data_in, key: in std_logic_vector(127 downto 0);
+    data_out: out std_logic_vector(127 downto 0);
+    done: out std_logic
+  );
+  end component;
+
+  component sbox is
+  port(
+    byte_input: in std_logic_vector(7 downto 0);
+    output_byte: out std_logic_vector(7 downto 0)
+  );
+  end component;
+
+  component shift_rows is
+        port (
+                input : in std_logic_vector(127 downto 0);
+                output : out std_logic_vector(127 downto 0)
+        );
+  end component;
+
+  component mix_col is
+  port(
+    clock, reset, start: in std_logic;
+    done: out std_logic;
+
+    data_in: in std_logic_vector(127 downto 0);
+    data_out: out std_logic_vector(127 downto 0)
+    );
+  end component;
+
+
+  begin
+
+
+  end AES_arch;
