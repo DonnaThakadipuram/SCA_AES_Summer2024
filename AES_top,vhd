@@ -14,6 +14,11 @@ end AES_top;
 
 architecture AES_arch of AES_top is
   --signal
+  --start signals
+  signal begin_SUBBYTES, begin_SHIFTROWS, begin_MIXCOLUMNS, begin_ADDROUNDKEY: std_logic;
+
+  --finish signals
+  signal finish_SUBBYTES, finish_SHIFTFOWS, finish_MIXCOLUMNS, finish_ADDROUNDKEY: std_logic;
 
   component add_round_key is
   port(
@@ -24,6 +29,7 @@ architecture AES_arch of AES_top is
   );
   end component;
 
+--TODO: chaange this component declaration to sub_bytes
   component sbox is
   port(
     byte_input: in std_logic_vector(7 downto 0);
